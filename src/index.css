@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'IBM Plex Sans JP', sans-serif;
+  --font-display: 'IBM Plex Sans JP', sans-serif;
+
+  --color-bg: #0a0a0a;
+  --color-surface: #121212;
+  --color-accent: #ffffff;
+  --color-muted: #888888;
+  --color-border: rgba(255, 255, 255, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-accent);
+  -webkit-font-smoothing: antialiased;
+}
+
+.sketchfab-embed-wrapper iframe {
+  pointer-events: auto;
+}
