@@ -68,7 +68,7 @@ const Hero = () => (
         alt="Cyclist deeply engaged in a ride" 
         className="w-full h-full object-cover object-[center_30%] opacity-40 mix-blend-luminosity grayscale"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-bg)] via-[var(--color-bg)]/80 to-transparent"></div>
     </div>
     
     <FadeIn className="relative z-10 flex flex-col items-start w-full px-6 md:px-12 max-w-7xl mx-auto pt-20">
@@ -96,7 +96,7 @@ const SaddleCard = ({ name, desc, type, delay, id, price, image }: { name: strin
     whileInView={{ opacity: 1 }}
     transition={{ duration: 0.5, delay }}
     viewport={{ once: true }}
-    className="group flex flex-col justify-between p-[30px] border-b xl:border-b-0 border-r-0 xl:border-r border-[var(--color-border)] last:border-r-0 hover:bg-[#111111] transition-colors duration-300 min-h-[300px]"
+    className="group flex flex-col justify-between p-[30px] border-b xl:border-b-0 border-r-0 xl:border-r border-[var(--color-border)] last:border-r-0 hover:bg-[var(--color-surface)] transition-colors duration-300 min-h-[300px]"
   >
     <div>
       <div className="text-[10px] text-[var(--color-muted)] font-semibold uppercase tracking-[0.1em]">{id}</div>
@@ -104,9 +104,8 @@ const SaddleCard = ({ name, desc, type, delay, id, price, image }: { name: strin
       <p className="text-[12px] text-[var(--color-muted)] mt-2">{desc}</p>
     </div>
     
-    <div className="w-full flex-1 min-h-[200px] bg-[#050505] rounded-[6px] my-6 relative flex items-center justify-center overflow-hidden border border-[var(--color-border)]">
-      <img src={image} alt={name} className="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent opacity-80 pointer-events-none" />
+    <div className="w-full aspect-[4/3] bg-[var(--color-surface)] rounded-[6px] my-6 relative flex items-center justify-center overflow-hidden border border-[var(--color-border)]">
+      <img src={image} alt={name} className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" />
     </div>
 
     <div className="text-[13px] text-[var(--color-accent)] mt-auto flex justify-between items-center opacity-80 pt-2 border-t border-transparent">
@@ -119,15 +118,15 @@ const SaddleCard = ({ name, desc, type, delay, id, price, image }: { name: strin
 const Models = () => (
   <section id="models" className="border-t border-[var(--color-border)] bg-[var(--color-bg)] w-full">
     <div className="grid grid-cols-1 xl:grid-cols-3">
-      <SaddleCard id="S-01" name="Endurance Pro" desc="Optimized for 100km+ rides." type="Performance" price="€249.00" delay={0} image="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=800&q=80" />
-      <SaddleCard id="S-02" name="Carbon Aero" desc="Minimalist aggressive stance." type="All-Terrain" price="€320.00" delay={0.1} image="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=800&q=80" />
-      <SaddleCard id="S-03" name="Urban Mesh" desc="Breathable daily commute." type="City" price="€189.00" delay={0.2} image="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=800&q=80" />
+      <SaddleCard id="S-01" name="Endurance Pro" desc="Optimized for 100km+ rides." type="Performance" price="€249.00" delay={0} image="https://plus.unsplash.com/premium_photo-1677838847763-0810bff8f40e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+      <SaddleCard id="S-02" name="Carbon Aero" desc="Minimalist aggressive stance." type="All-Terrain" price="€320.00" delay={0.1} image="https://plus.unsplash.com/premium_photo-1677838847763-0810bff8f40e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+      <SaddleCard id="S-03" name="Urban Mesh" desc="Breathable daily commute." type="City" price="€189.00" delay={0.2} image="https://plus.unsplash.com/premium_photo-1677838847763-0810bff8f40e?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
     </div>
   </section>
 );
 
 const Interactive3D = () => (
-  <section className="bg-[radial-gradient(circle_at_50%_50%,#1a1a1a_0%,#0a0a0a_100%)] relative flex flex-col items-center justify-center min-h-[600px] w-full py-16 px-6 lg:px-12 gap-8 border-b border-[var(--color-border)]">
+  <section className="bg-[radial-gradient(circle_at_50%_50%,var(--color-surface)_0%,var(--color-bg)_100%)] relative flex flex-col items-center justify-center min-h-[600px] w-full py-16 px-6 lg:px-12 gap-8 border-b border-[var(--color-border)]">
     {/* Top Right Label */}
     <div className="w-full max-w-7xl flex justify-end">
       <div className="text-right z-10 w-full sm:w-auto">
@@ -277,7 +276,7 @@ const EngineeringSection = () => (
 
 const HeatmapAnimation = () => {
   return (
-    <div className="relative w-full aspect-[4/3] md:aspect-video rounded-[6px] overflow-hidden border border-[var(--color-border)] bg-black shadow-[0_0_50px_rgba(255,255,255,0.02)] flex items-center justify-center group/heatmap">
+    <div className="relative w-full aspect-[4/3] md:aspect-video rounded-[6px] overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[0_0_50px_rgba(0,0,0,0.05)] flex items-center justify-center group/heatmap">
 
       {/* 3D Model Embed Background - Grayscaled & brightened so mix-blend-color can tint its mesh */}
       <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden">
@@ -292,9 +291,9 @@ const HeatmapAnimation = () => {
       </div>
 
       {/* Background Pattern and vignettes */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:24px_24px] pointer-events-none z-0" />
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent z-0 pointer-events-none" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[length:24px_24px] pointer-events-none z-0" />
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[var(--color-surface)] to-transparent z-0 pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--color-surface)] to-transparent z-0 pointer-events-none" />
 
       {/* AR Pressure Data Overlays - Uses mix-blend-color or multiply over the brightened gray mesh to conform perfectly to the 3D shape contour */}
       <div className="absolute inset-0 pointer-events-none z-10 flex items-center justify-center mix-blend-multiply opacity-100 transition-opacity duration-1000 group-hover/heatmap:opacity-50">
@@ -405,9 +404,9 @@ const PressureSection = () => (
 );
 
 const ScenarioCard = ({ title, desc, img }: { title: string, desc: string, img: string }) => (
-  <div className="group relative overflow-hidden rounded-[6px] border border-[var(--color-border)] aspect-[4/5] bg-black">
+  <div className="group relative overflow-hidden rounded-[6px] border border-[var(--color-border)] aspect-[4/5] bg-[var(--color-surface)]">
     <img src={img} alt={title} className="w-full h-full object-cover opacity-40 grayscale group-hover:opacity-90 group-hover:scale-105 transition-all duration-700" />
-    <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[rgba(5,5,5,0.2)] to-transparent opacity-90 pointer-events-none" />
+    <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)]/20 to-transparent opacity-90 pointer-events-none" />
     <div className="absolute bottom-0 left-0 p-8 w-full flex flex-col items-start translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
       <h3 className="font-display text-[24px] font-bold text-[var(--color-accent)] mb-2">{title}</h3>
       <p className="text-[14px] text-[var(--color-muted)] font-light opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 leading-relaxed">{desc}</p>
@@ -416,7 +415,7 @@ const ScenarioCard = ({ title, desc, img }: { title: string, desc: string, img: 
 );
 
 const ScenariosSection = () => (
-  <section className="py-32 md:py-48 px-6 md:px-12 bg-black border-t border-[var(--color-border)]">
+  <section className="py-32 md:py-48 px-6 md:px-12 bg-[var(--color-bg)] border-t border-[var(--color-border)]">
     <div className="max-w-7xl mx-auto">
       <FadeIn className="mb-16 md:mb-24">
         <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--color-accent)] leading-[1.1]">
@@ -446,7 +445,7 @@ const SpecRow = ({ label, value }: { label: string, value: string }) => (
 );
 
 const PurchaseSection = () => (
-  <section id="shop" className="py-32 md:py-48 px-6 md:px-12 bg-[#050505] border-t border-[var(--color-border)]">
+  <section id="shop" className="py-32 md:py-48 px-6 md:px-12 bg-[var(--color-bg)] border-t border-[var(--color-border)]">
     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
       <FadeIn>
         <div className="flex flex-col">
@@ -483,7 +482,7 @@ const PurchaseSection = () => (
             <div className="flex flex-col gap-3">
               <label className="text-[10px] text-[var(--color-muted)] uppercase tracking-[0.1em]">Select Width</label>
               <div className="grid grid-cols-2 gap-4">
-                <button className="py-4 border border-[var(--color-accent)] bg-[var(--color-accent)] text-[#050505] font-bold text-sm rounded-[6px] transition-colors">
+                <button className="py-4 border border-[var(--color-accent)] bg-[var(--color-accent)] text-[var(--color-bg)] font-bold text-sm rounded-[6px] transition-colors">
                   143 mm
                 </button>
                 <button className="py-4 border border-[var(--color-border)] bg-transparent text-[var(--color-muted)] hover:text-[var(--color-accent)] font-bold text-sm rounded-[6px] transition-colors">
@@ -493,18 +492,18 @@ const PurchaseSection = () => (
             </div>
           </div>
           
-          <button className="w-full bg-[var(--color-accent)] text-[#0a0a0a] font-bold uppercase tracking-[0.15em] text-[12px] py-5 rounded-[6px] hover:bg-gray-200 transition-colors mb-8 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+          <button className="w-full bg-[var(--color-accent)] text-[var(--color-bg)] font-bold uppercase tracking-[0.15em] text-[12px] py-5 rounded-[6px] hover:opacity-80 transition-all mb-8 shadow-[0_0_20px_var(--color-border)]">
             Add to Cart
           </button>
           
           <div className="text-center pt-6">
             <p className="text-[10px] text-[var(--color-muted)] mb-5 uppercase tracking-[0.2em] font-semibold">Also available at partner channels</p>
             <div className="flex justify-center items-center gap-6 opacity-40 font-display font-medium text-[14px] tracking-wider transition-opacity hover:opacity-80">
-              <span className="hover:text-white transition-colors cursor-pointer">SIGMA SPORT</span>
+              <span className="hover:text-[var(--color-accent)] transition-colors cursor-pointer">SIGMA SPORT</span>
               <span className="text-[10px] text-[var(--color-muted)]">•</span>
-              <span className="hover:text-white transition-colors cursor-pointer">BIKE24</span>
+              <span className="hover:text-[var(--color-accent)] transition-colors cursor-pointer">BIKE24</span>
               <span className="text-[10px] text-[var(--color-muted)]">•</span>
-              <span className="hover:text-white transition-colors cursor-pointer">CANYON</span>
+              <span className="hover:text-[var(--color-accent)] transition-colors cursor-pointer">CANYON</span>
             </div>
           </div>
         </div>
@@ -572,7 +571,7 @@ export default function App() {
         <Hero />
         
         {/* Main Content Area */}
-        <div className="flex flex-col w-full min-w-0 bg-[#0a0a0a]">
+        <div className="flex flex-col w-full min-w-0 bg-[var(--color-bg)]">
           <Interactive3D />
           <Models />
           <AnatomySection />
