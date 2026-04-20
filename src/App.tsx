@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
-import { motion, useInView } from 'motion/react';
-import { ArrowRight, CheckCircle2, ChevronRight, Menu, X } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, useInView, AnimatePresence } from 'motion/react';
+import { ArrowRight, CheckCircle2, ChevronRight, Menu, X, Sun, Moon } from 'lucide-react';
 
 const FadeIn = ({ children, className = "", delay = 0 }: { children: React.ReactNode, className?: string, delay?: number }) => (
   <motion.div
@@ -18,6 +18,55 @@ const FadeIn = ({ children, className = "", delay = 0 }: { children: React.React
     {children}
   </motion.div>
 );
+
+const ThemeToggle = () => {
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      setIsDark(true);
+    }
+  }, []);
+
+  const toggle = () => {
+    const next = !isDark;
+    setIsDark(next);
+    if (next) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'light');
+    }
+  };
+
+  return (
+    <button
+      onClick={toggle}
+      className="relative w-10 h-10 flex items-center justify-center rounded-full border border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-colors cursor-pointer"
+      aria-label="Toggle theme"
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        {isDark ? (
+          <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.25 }}>
+            <Sun size={16} className="text-[var(--color-accent)]" />
+          </motion.div>
+        ) : (
+          <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.25 }}>
+            <Moon size={16} className="text-[var(--color-accent)]" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </button>
+  );
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,7 +83,8 @@ const Navbar = () => {
         <a href="#" className="hover:text-[var(--color-accent)] transition-colors">Archive</a>
       </div>
       
-      <div className="hidden md:flex w-[200px] justify-end">
+      <div className="hidden md:flex w-[200px] justify-end items-center gap-4">
+        <ThemeToggle />
         <button className="px-6 py-3 border border-[var(--color-accent)] bg-transparent text-[var(--color-accent)] font-bold uppercase tracking-[0.1em] text-[10px] hover:bg-[var(--color-accent)] hover:text-[var(--color-bg)] transition-colors rounded-[6px]">
           Find your fit
         </button>
@@ -51,6 +101,10 @@ const Navbar = () => {
           <a href="#models" onClick={() => setIsOpen(false)} className="text-[var(--color-accent)] text-lg font-medium">Performance</a>
           <a href="#technology" onClick={() => setIsOpen(false)} className="text-[var(--color-accent)] text-lg font-medium">Science</a>
           <a href="#engineering" onClick={() => setIsOpen(false)} className="text-[var(--color-accent)] text-lg font-medium">Lab</a>
+          <div className="flex items-center justify-between">
+            <span className="text-[var(--color-muted)] text-xs uppercase tracking-widest">Theme</span>
+            <ThemeToggle />
+          </div>
           <button className="px-6 py-3 border border-[var(--color-accent)] bg-transparent text-[var(--color-accent)] font-bold uppercase tracking-[0.1em] text-xs text-center">
             Find your fit
           </button>

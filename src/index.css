@@ -4,6 +4,7 @@
   --font-sans: 'IBM Plex Sans JP', sans-serif;
   --font-display: 'IBM Plex Sans JP', sans-serif;
 
+  /* Light theme (default) */
   --color-bg: #f7f7f7;
   --color-surface: #ffffff;
   --color-accent: #222222;
@@ -15,10 +16,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --color-bg: #0a0a0a;
+  --color-surface: #121212;
+  --color-accent: #ffffff;
+  --color-muted: #888888;
+  --color-border: rgba(255, 255, 255, 0.1);
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-accent);
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .sketchfab-embed-wrapper iframe {
